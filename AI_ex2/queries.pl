@@ -1,6 +1,7 @@
 find_similar_movies_1(X, Y) :- genre(X, G1), genre(Y, G1),genre(X, G2), genre(Y, G2),G1 \= G2,genre(X, G3), genre(Y, G3),G1 \= G3, G3 \= G2,genre(X, G4),genre(Y, G4),G3 \= G4,G1 \= G4,G2 \= G4,X \= Y 
 find_similar_movies_2(X, Y) :- genre(X, G1), genre(Y, G1),genre(X, G2), genre(Y, G2),G1 \= G2,genre(X, G3),genre(Y, G3),G1 \= G3,G3 \= G2,not(find_similar_movies_1(X, Y)), X \= Y
-find_similar_movies_3(X, Y) :- genre(X, G1), genre(Y, G1),not(find_similar_movies_2(X, Y)),X \= Y 
+find_similar_movies_2_i(X, Y) :- genre(X, G1), genre(Y, G1),genre(X, G2), genre(Y, G2),G1 \= G2,not(find_similar_movies_2(X, Y)), X \= Y
+find_similar_movies_3(X, Y) :- genre(X, G1), genre(Y, G1),not(find_similar_movies_2_i(X, Y)),X \= Y 
 find_similar_movies_4(X, Y) :- director(X, D), director(Y, D), X \= Y 
 find_similar_movies_5(X, Y) :-  plot_keywords(X,P1),plot_keywords(Y,P1),plot_keywords(X,P2),plot_keywords(Y,P2),X \= Y,P1 \= P2,plot_keywords(X,P3),plot_keywords(Y,P3),P1 \= P3,P2 \= P3,plot_keywords(X,P4),plot_keywords(Y,P4),P4 \= P1, P4 \= P2, P4 \= P3 
 find_similar_movies_6(X, Y) :- plot_keywords(X,P1),plot_keywords(Y,P1),X \= Y,plot_keywords(X,P2),plot_keywords(Y,P2),P1 \= P2,not(find_similar_movies_5(X, Y))
